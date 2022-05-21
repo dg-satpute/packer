@@ -1,0 +1,34 @@
+{
+    "builders":[
+        {
+            "type":"amazon-ebs",
+            "access_key": "AKIA5QCDSA2XRGC4LNFF",
+            "secret_key": "EpsReB2Fr+ff/z/lldsXsMwWWAdlKQsDBSc+QQw2",
+            "region": "ap-south-1",
+            "ami_name": "post-processor-example",
+            "source_ami": "ami-076754bea03bde973",
+            "instance_type": "t2.micro",
+            "ssh_username": "ec2-user"
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "echo hello",
+                "echo This is first line"
+            ]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "manifest",
+            "output": "output.json"
+        },
+        {
+            "type": "vagrant"
+        }
+    ]
+}
+
